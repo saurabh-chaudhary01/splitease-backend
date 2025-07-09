@@ -1,5 +1,6 @@
 package com.example.SplitEase.entity;
 
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -7,12 +8,15 @@ import java.util.Collection;
 import java.util.List;
 
 public class UserPrincipal implements UserDetails {
+    @Getter
+    private final Long userId;
     private final String username;
     private final String password;
 
-    public UserPrincipal(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public UserPrincipal(UserEntity entity) {
+        this.userId = entity.getId();
+        this.username = entity.getEmailId();
+        this.password = entity.getPassword();
     }
 
     @Override
@@ -42,11 +46,11 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return username;
+        return this.username;
     }
 }

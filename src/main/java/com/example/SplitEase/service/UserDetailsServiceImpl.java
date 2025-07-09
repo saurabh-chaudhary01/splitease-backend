@@ -20,6 +20,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .findByEmailId(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        return new UserPrincipal(userEntity.getEmailId(), userEntity.getPassword());
+        return new UserPrincipal(userEntity);
     }
 }
