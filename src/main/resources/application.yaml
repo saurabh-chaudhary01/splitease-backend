@@ -1,0 +1,23 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: SplitEase
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: POSTGRESQL
+  datasource:
+    url: jdbc:postgresql://localhost:5432/splitease
+    username: saurabh
+    password: saurabh123
+    driver-class-name: org.postgresql.Driver
+
+jwt:
+  secret: "super-secret-jwt-token-never-reveal-this"
