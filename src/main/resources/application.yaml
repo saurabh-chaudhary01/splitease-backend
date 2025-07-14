@@ -19,5 +19,16 @@ spring:
     password: saurabh123
     driver-class-name: org.postgresql.Driver
 
+springdoc:
+  swagger-ui:
+    path: /swagger
+
+management:
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: health,info,metrics
+
 jwt:
   secret: "super-secret-jwt-token-never-reveal-this"
