@@ -5,6 +5,7 @@ import com.example.SplitEase.dto.request.GroupRequest;
 import com.example.SplitEase.dto.response.GroupResponse;
 import com.example.SplitEase.entity.UserPrincipal;
 import com.example.SplitEase.service.GroupService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/groups")
 @RequiredArgsConstructor
+@Tag(name = "Group APIs")
 public class GroupController {
     private final GroupService groupService;
 
@@ -31,13 +33,13 @@ public class GroupController {
 
     @GetMapping("/user-groups")
     public List<GroupResponse> getUserGroups(@AuthenticationPrincipal UserPrincipal principal) {
-        Long userId = principal.getUserId();
+        Long userId = principal.getId();
         return groupService.getUserGroups(userId);
     }
 
     @GetMapping("/member-groups")
     public List<GroupResponse> getUserMemberGroups(@AuthenticationPrincipal UserPrincipal principal) {
-        Long userId = principal.getUserId();
+        Long userId = principal.getId();
         return groupService.getUserMemberGroups(userId);
     }
 }

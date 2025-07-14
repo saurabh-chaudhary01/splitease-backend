@@ -6,6 +6,7 @@ import com.example.SplitEase.dto.response.TokenResponse;
 import com.example.SplitEase.dto.response.UserResponse;
 import com.example.SplitEase.service.UserService;
 import com.example.SplitEase.utility.JwtTokenUtil;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import java.time.Duration;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@Tag(name = "Auth APIs", description = "login, logout, register and refresh apis")
 public class AuthController {
     private static final int ACCESS_TOKEN_EXPIRY_MINUTES = 15;
     private static final int REFRESH_TOKEN_EXPIRY_DAYS = 7;
