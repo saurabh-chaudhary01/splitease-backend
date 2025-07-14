@@ -11,6 +11,7 @@ public class UserResponse {
     private String firstName;
     private String lastName;
     private String emailId;
+    private String role;
 
     public static UserResponse convertToDTO(UserEntity entity) {
         return UserResponse.builder()
@@ -18,6 +19,7 @@ public class UserResponse {
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
                 .emailId(entity.getEmailId())
+                .role(entity.getRole())
                 .build();
     }
 }
