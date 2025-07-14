@@ -52,13 +52,11 @@ public class SpringSecurity {
                         .requestMatchers(
                                 "/api/auth/login",
                                 "/api/auth/register",
-                                "/api/auth/logout"
-                        ).permitAll()
-                        .requestMatchers(
+                                "/api/auth/logout",
                                 "/swagger",
                                 "/v3/api-docs/**",
                                 "/manage/**"
-                        ).hasRole("ADMIN")
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf(AbstractHttpConfigurer::disable)

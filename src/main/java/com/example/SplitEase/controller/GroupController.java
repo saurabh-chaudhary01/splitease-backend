@@ -2,6 +2,7 @@ package com.example.SplitEase.controller;
 
 import com.example.SplitEase.dto.request.ExpenseRequest;
 import com.example.SplitEase.dto.request.GroupRequest;
+import com.example.SplitEase.dto.response.ExpenseResult;
 import com.example.SplitEase.dto.response.GroupResponse;
 import com.example.SplitEase.entity.UserPrincipal;
 import com.example.SplitEase.service.GroupService;
@@ -29,6 +30,11 @@ public class GroupController {
     @PostMapping("/expense")
     public void addExpense(@RequestBody ExpenseRequest dto) {
         groupService.addExpense(dto);
+    }
+
+    @GetMapping("/result/{groupId}")
+    public List<ExpenseResult> getGroupExpenseResult(@PathVariable Long groupId) {
+        return groupService.getGroupExpense(groupId);
     }
 
     @GetMapping("/user-groups")
