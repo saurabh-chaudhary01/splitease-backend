@@ -20,6 +20,7 @@ public class UserEntity {
     private String firstName;
     private String lastName;
     private String password;
+    private String role;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

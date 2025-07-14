@@ -26,28 +26,18 @@ public class UserService {
         userEntity.setEmailId(registerRequest.getEmailId());
         userEntity.setFirstName(registerRequest.getFirstName());
         userEntity.setLastName(registerRequest.getLastName());
+        userEntity.setRole("USER");
 
         String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
         userEntity.setPassword(encodedPassword);
 
         UserEntity persistedUser = userRepository.save(userEntity);
-
-        return UserResponse.builder()
-                .id(persistedUser.getId())
-                .firstName(persistedUser.getFirstName())
-                .lastName(persistedUser.getLastName())
-                .emailId(persistedUser.getEmailId())
-                .build();
+        return UserResponse.convertToDTO(persistedUser);
     }
 
     public UserResponse getUserByEmailId(String emailId) {
         UserEntity userEntity = userRepository.findByEmailId(emailId).orElseThrow();
-        return UserResponse.builder()
-                .id(userEntity.getId())
-                .firstName(userEntity.getFirstName())
-                .lastName(userEntity.getLastName())
-                .emailId(userEntity.getEmailId())
-                .build();
+        return UserResponse.convertToDTO(userEntity);
     }
 
     public void verifyCredential(LoginRequest request) {
