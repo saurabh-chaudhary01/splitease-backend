@@ -2,8 +2,13 @@ package com.example.SplitEase.configuration;
 
 import com.example.SplitEase.filter.JwtAuthenticationFilter;
 import com.example.SplitEase.filter.JwtRefreshFilter;
+import com.example.SplitEase.security.CustomAccessDeniedHandler;
+import com.example.SplitEase.security.CustomAuthEntryPoint;
 import com.example.SplitEase.security.JwtAuthenticationProvider;
 import com.example.SplitEase.utility.JwtTokenUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,20 +37,28 @@ public class SpringSecurity {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager());
-        JwtRefreshFilter jwtRefreshFilter = new JwtRefreshFilter(authenticationManager());
+        CustomAuthEntryPoint authEntryPoint = new CustomAuthEntryPoint(objectMapper());
+        CustomAccessDeniedHandler accessDeniedHandler = new CustomAccessDeniedHandler(objectMapper());
+
+        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager(), authEntryPoint);
+        JwtRefreshFilter jwtRefreshFilter = new JwtRefreshFilter(authenticationManager(), authEntryPoint);
 
         return http
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint(authEntryPoint)
+                        .accessDeniedHandler(accessDeniedHandler)
+                )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/v3/api-docs/**",
-                                "/swagger-resources/**",
-                                "/swagger-ui.html",
-                                "/webjars/**",
                                 "/api/auth/login",
                                 "/api/auth/register",
                                 "/api/auth/logout"
                         ).permitAll()
+                        .requestMatchers(
+                                "/swagger",
+                                "/v3/api-docs/**",
+                                "/manage/**"
+                        ).hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .csrf(AbstractHttpConfigurer::disable)
@@ -56,6 +69,14 @@ public class SpringSecurity {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterAfter(jwtRefreshFilter, JwtAuthenticationFilter.class)
                 .build();
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        return objectMapper;
     }
 
     @Bean

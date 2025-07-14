@@ -41,17 +41,8 @@ public class JwtTokenUtil {
 
     public String validateAndExtractUsername(String token) {
         Claims claims = extractAllClaims(token);
-
-        String username = claims.getSubject();
-        Date expiration = claims.getExpiration();
-
-        if (expiration.after(new Date())) {
-            return username;
-        }
-
-        return null;
+        return claims.getSubject();
     }
-
 
     private Claims extractAllClaims(String token) {
         return Jwts.parser()
