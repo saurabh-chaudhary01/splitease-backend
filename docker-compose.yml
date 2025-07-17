@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: splitease-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: splitease
+      POSTGRES_USER: saurabh
+      POSTGRES_PASSWORD: saurabh123
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - splitease-net
+
+  redis:
+    image: redis:8
+    container_name: splitease-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    networks:
+      - splitease-net
+
+volumes:
+  pgdata:
+  redisdata:
+
+networks:
+  splitease-net:
