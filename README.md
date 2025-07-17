@@ -3,8 +3,6 @@
 **SplitEase** is a group expense tracking backend application built with **Spring Boot**. It simplifies the process of
 managing and splitting bills among groups with flexible logic and secure authentication.
 
----
-
 ## 🚀 Features
 
 - ✅ **User Authentication** using **JWT** with Refresh Token support
@@ -19,8 +17,6 @@ managing and splitting bills among groups with flexible logic and secure authent
 - 🧱 Clean architecture with **DTO**, **Service**, and **Repository** separation
 - 🐳 **Docker Compose** integration for Redis
 
----
-
 ## 🛠️ Tech Stack
 
 | Layer      | Technology                     |
@@ -34,8 +30,6 @@ managing and splitting bills among groups with flexible logic and secure authent
 | Docs       | SpringDoc OpenAPI (Swagger UI) |
 | Deployment | Docker + Docker Compose        |
 | Build Tool | Maven                          |
-
----
 
 ## 📂 Project Structure
 
@@ -54,14 +48,10 @@ src/
 ├── util/               # Utility classes (e.g., JwtUtil & Pair)
 ```
 
----
-
 ## 🧪 API Documentation
 
 > Swagger UI available at:  
-> **http://localhost:8000/swagger-ui**
-
----
+> **`http://localhost:8000/swagger-ui`**
 
 ## ⚙️ Running Locally
 
@@ -84,16 +74,12 @@ docker-compose up -d
 ./mvnw spring-boot:run
 ```
 
----
-
 ## 🧹 To-Do / Future Enhancements
 
 - Email Verification with Spring Mail
 - Group Invite & Join Mechanism
 - Scheduled Cleanup for Old Data
 - Dockerize full app (Backend + DB + Redis)
-
----
 
 ## 📜 License
 
