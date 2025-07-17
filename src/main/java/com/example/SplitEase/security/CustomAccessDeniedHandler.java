@@ -1,6 +1,6 @@
 package com.example.SplitEase.security;
 
-import com.example.SplitEase.dto.response.ErrorDTO;
+import com.example.SplitEase.dto.response.ErrorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,7 +20,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response,
                        AccessDeniedException accessDeniedException) throws IOException {
 
-        ErrorDTO errorDTO = ErrorDTO.builder()
+        ErrorResponse errorResponse = ErrorResponse.builder()
                 .status(HttpStatus.FORBIDDEN.value())
                 .error("FORBIDDEN")
                 .message("You don't have permission to access this resource")
@@ -32,6 +32,6 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        mapper.writeValue(response.getWriter(), errorDTO);
+        mapper.writeValue(response.getWriter(), errorResponse);
     }
 }

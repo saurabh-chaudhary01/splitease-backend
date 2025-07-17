@@ -1,6 +1,6 @@
 package com.example.SplitEase.security;
 
-import com.example.SplitEase.dto.response.ErrorDTO;
+import com.example.SplitEase.dto.response.ErrorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,7 +19,7 @@ public class CustomAuthEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,
                          AuthenticationException authException) throws IOException {
-        ErrorDTO error = ErrorDTO.builder()
+        ErrorResponse error = ErrorResponse.builder()
                 .status(HttpStatus.UNAUTHORIZED.value())
                 .error("UNAUTHORIZED")
                 .message(authException.getMessage())
