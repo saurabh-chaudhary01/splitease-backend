@@ -8,10 +8,7 @@ import java.util.List;
 @Data
 public class ExpenseRequest {
     @NotNull(message = "this field is required")
-    private Long userId;
-
-    @NotNull(message = "this field is required")
-    private Long groupId;
+    private Long payerId;
 
     @NotNull(message = "this field is required")
     @Min(value = 0, message = "amount must be positive")

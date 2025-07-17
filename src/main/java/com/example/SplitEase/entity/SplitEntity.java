@@ -16,5 +16,5 @@ public class SplitEntity {
     private Integer percentage;
 
     @ManyToOne
-    private UserEntity user;
+    private UserEntity owedBy;
 }

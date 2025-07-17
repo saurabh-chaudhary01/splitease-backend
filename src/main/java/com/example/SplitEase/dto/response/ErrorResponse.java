@@ -1,14 +1,18 @@
 package com.example.SplitEase.dto.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
 @Builder
-public class ErrorDTO {
+@NoArgsConstructor
+@AllArgsConstructor
+public class ErrorResponse {
     private String error;
     private String message;
     private int status;

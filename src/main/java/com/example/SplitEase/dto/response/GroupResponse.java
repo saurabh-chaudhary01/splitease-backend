@@ -1,14 +1,18 @@
 package com.example.SplitEase.dto.response;
 
 import com.example.SplitEase.entity.GroupEntity;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class GroupResponse {
     private Long id;
     private String name;

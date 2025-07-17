@@ -21,10 +21,10 @@ public class GroupEntity {
     @ManyToOne
     private UserEntity owner;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<UserEntity> members = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ExpenseEntity> expenses = new ArrayList<>();
 
     @CreationTimestamp

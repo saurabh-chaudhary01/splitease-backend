@@ -19,7 +19,7 @@ public class ExpenseEntity {
     private String splitOption;
 
     @ManyToOne
-    private UserEntity paidBy;
+    private UserEntity payer;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<SplitEntity> splits = new ArrayList<>();

@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 public class UserPrincipal implements UserDetails {
     private Long id;
-    private String email;
+    private String username;
     private String password;
     private String role;
 
@@ -24,6 +24,6 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.email;
+        return this.username;
     }
 }

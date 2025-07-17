@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class SplitRequest {
     @NotNull(message = "this filed is required")
-    private Long userId;
+    private Long paidByUserId;
 
     @NotNull(message = "this filed is required")
     @Min(value = 0, message = "amount must be positive")
