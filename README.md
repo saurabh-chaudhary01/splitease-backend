@@ -1,45 +1,45 @@
 # 🧾 SplitEase Backend
 
-**SplitEase** is a group expense tracking application that simplifies splitting bills among multiple users. This backend
-service is built using **Spring Boot**, offering robust authentication, security, and RESTful APIs.
+**SplitEase** is a group expense tracking backend application built with **Spring Boot**. It simplifies the process of
+managing and splitting bills among groups with flexible logic and secure authentication.
 
 ---
 
 ## 🚀 Features
 
-- ✅ **User Authentication** with **JWT + Refresh Token**
-- 🔐 **Spring Security** integrated with stateless token-based auth
-- 🧾 **Expense Splitting Logic**
-    - Equal, Percentage, and Custom Shares
-    - Handles multi-user group expenses with settlement generation
-- 🧠 **DTO Pattern** to decouple entity models from API responses
-- 📦 **Custom Exception Handling** with consistent error responses
-- 🧪 **Swagger/OpenAPI Documentation** available at `/swagger-ui`
-- 💡 **Modular Structure** (Controller → Service → Repository)
-- 🛡️ **Secure Endpoints** with role-based access control
-- 📊 **Actuator Endpoints** for health & info (dev only)
+- ✅ **User Authentication** using **JWT** with Refresh Token support
+- 🔐 **Spring Security 6** with stateless, token-based authorization
+- 🧮 **Advanced Expense Splitting**
+    - Supports Equal, Percentage, and Custom shares
+    - Handles multiple users per group and auto-generates settlements
+- 📦 **Redis Caching** for improved performance
+- 📄 **Custom Exception Handling** for consistent error responses
+- 📊 **Spring Actuator** endpoints (enabled in dev only)
+- 🧪 **Swagger/OpenAPI** documentation at `/swagger-ui`
+- 🧱 Clean architecture with **DTO**, **Service**, and **Repository** separation
+- 🐳 **Docker Compose** integration for Redis
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer         | Technology                      |
-|---------------|---------------------------------|
-| Language      | Java 21                         |
-| Framework     | Spring Boot 3.x                 |
-| Auth          | JWT (access & refresh tokens)   |
-| Security      | Spring Security 6               |
-| Documentation | SpringDoc OpenAPI (Swagger UI)  |
-| Database      | JPA/Hibernate (plug in your DB) |
-| Build Tool    | Maven                           |
+| Layer      | Technology                     |
+|------------|--------------------------------|
+| Language   | Java 21                        |
+| Framework  | Spring Boot 3.x                |
+| Auth       | JWT (access + refresh tokens)  |
+| Security   | Spring Security 6              |
+| Database   | JPA/Hibernate (PostgreSQL)     |
+| Caching    | Redis                          |
+| Docs       | SpringDoc OpenAPI (Swagger UI) |
+| Deployment | Docker + Docker Compose        |
+| Build Tool | Maven                          |
 
 ---
 
 ## 📂 Project Structure
 
 ```html
-
-<pre>
 src/
 ├── controller/         # REST controllers (User, Auth, Group)
 ├── dto/                # Data Transfer Objects
@@ -48,15 +48,53 @@ src/
 ├── entity/             # JPA entities
 ├── exception/          # Custom exceptions and handlers
 ├── repository/         # Spring Data JPA repositories
-├── security/           # JWT filters, config, token utils
+├── security/           # JWT filters, config
 ├── service/            # Service interfaces
 │   └── impl/           # Service implementations
-├── util/               # Utility classes (e.g., ObjectMapper config)
-</pre>
+├── util/               # Utility classes (e.g., JwtUtil & Pair)
 ```
 
-## 📚 API Documentation
+---
 
-Swagger UI is available at:
+## 🧪 API Documentation
 
-> 📍 [`http://localhost:8000/swagger-ui`](http://localhost:8080/swagger-ui)
+> Swagger UI available at:  
+> **http://localhost:8000/swagger-ui**
+
+---
+
+## ⚙️ Running Locally
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-org/splitease-backend.git
+cd splitease-backend
+```
+
+### 2. Start Containers
+
+```bash
+docker-compose up -d
+```
+
+### 3. Run the Spring Boot App
+
+```bash
+./mvnw spring-boot:run
+```
+
+---
+
+## 🧹 To-Do / Future Enhancements
+
+- Email Verification with Spring Mail
+- Group Invite & Join Mechanism
+- Scheduled Cleanup for Old Data
+- Dockerize full app (Backend + DB + Redis)
+
+---
+
+## 📜 License
+
+MIT License — feel free to use, modify, and share.
